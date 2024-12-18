@@ -229,7 +229,7 @@ python3 src/main.py
 
 ## Notes
 ### Template System For ChatGPT Role & Prompt
-A basic template system is used when formatting what role and prompt to send ChatGPT. Templates may be found in the [`templates/](./templates/) directory.
+A basic template system is used when formatting what role and prompt to send ChatGPT. Templates may be found in the [`templates/`](./templates/) directory.
 
 The variables `url` and `content` are passed to the templates, so feel free to use them (e.g. `{{ content }}`).
 
