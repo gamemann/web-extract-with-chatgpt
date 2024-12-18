@@ -1,0 +1,8 @@
+conf.json
+venv/
+
+# General Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
