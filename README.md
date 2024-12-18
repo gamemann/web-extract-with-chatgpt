@@ -1,6 +1,8 @@
 A Linux [Python](https://www.python.org/) project that extracts data from a website using [Selenium](https://www.selenium.dev/) and [BeautifulSoup4](https://pypi.org/project/beautifulsoup4/), sends the data through [OpenAI](https://openai.com/)'s [ChatGPT](https://openai.com/index/chatgpt/) API, and returns the result.
 
-As of right now, that only websites this project can extract data from are topics from Discourse forums (using the `discourse_topic` extractor) since that's what I used when testing this application. Before making this project, I created a private project for my modding [community](https://moddingcommunity.com) that utilized the above technologies which inspired me to make this open source project.
+As of right now, that only websites this project can extract data from are topics from Discourse forums (using the [`discourse_topic`](./src/extract/extractors/discourse_topic.py) extractor) since that's what I used when testing this application. You may create your own extractors as well, please take a look at the source code [here](./src/extract/) for more information.
+
+Before making this project, I created a private project for my modding [community](https://moddingcommunity.com) that utilized the above technologies which inspired me to make this open source project. I'm hoping the code in the repository helps other developers who want to integrate ChatGPT into their projects or wants to see how to parse and extract data from websites.
 
 ![Preview](./preview/preview01.gif)
 
