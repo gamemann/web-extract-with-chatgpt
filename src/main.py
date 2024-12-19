@@ -57,14 +57,25 @@ def main():
         print("No ChatGPT API key set. Please modify the config file!")
         
         exit(1)
-        
+
     # Retrieve URL and extractor to use.
-    url = input("URL: ").strip()
+    url = cli.url
     
-    extractor_type = input("Extractor [discourse_topic]: ").strip()
+    if url is None:
+        url = input("URL: ").strip()
+    else:
+        print(f"Using URL: '{url}'...")
+    
+    extractor_type = cli.extractor
+    
+    if extractor_type is None:
+        extractor_type = input("Extractor [discourse_topic]: ").strip()
+    else:
+        print(f"Using Extractor: '{extractor_type}'...")
     
     # Check for default.
     if len(extractor_type) < 1:
+        print("Found extractor empty, using 'discourse_topic'...")
         extractor_type = "discourse_topic"
         
     # Load extractor class to use.

@@ -87,8 +87,10 @@ class Config():
             self.extract.drv_path = v.get("drv_path", self.extract.drv_path)
             
             if "agents" in  v:
-                for v2 in v:
-                    self.extract.agents.append(v2)
+                v2 = v["agents"]
+                
+                for agent in v2:
+                    self.extract.agents.append(agent)
         
         # Get ChatGPT config.
         if "chatgpt" in data:
