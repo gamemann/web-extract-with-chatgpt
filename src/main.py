@@ -94,6 +94,8 @@ def main():
         
     # Extract web page content.
     try:
+        print("Extracting web data...")
+        
         web_data = extractor.extract(url)
         
         # Remove spaces and such often associated with web pages.
@@ -105,6 +107,8 @@ def main():
         
     # Create ChatGPT class.
     try:
+        print("Initializing ChatGPT client...")
+        
         chatgpt = ChatGPT(
             key = cfg.chatgpt.key,
             model = cfg.chatgpt.model,
@@ -139,6 +143,8 @@ def main():
         
     # Send ChatGPT request.
     try:
+        print("Sending ChatGPT API request...")
+        
         resp = chatgpt.prompt(role, prompt)
     except Exception as e:
         print(f"Failed to send ChatGPT API request: {e}")
