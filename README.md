@@ -4,7 +4,7 @@ As of right now, that only websites this project can extract data from are topic
 
 Before making this project, I created a private project for my modding [community](https://moddingcommunity.com) that utilized the above technologies which inspired me to make this open source project. I'm hoping the code in the repository helps other developers who want to integrate ChatGPT into their projects or wants to see how to parse and extract data from websites.
 
-![Preview](./preview/preview01.gif)
+![Preview](./preview/preview.gif)
 
 ## Requirements
 * An OpenAI key which may be retrieved after setting up billing from [here](https://platform.openai.com/signup).
