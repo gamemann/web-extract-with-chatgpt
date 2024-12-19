@@ -67,6 +67,8 @@ The following command line arguments are supported.
 | Name | Default | Description |
 | ---- | ------- | ----------- |
 | -c --cfg | `./conf.json` | Path to config file. |
+| -u --url | `None` | The URL to parse. If not specified, you will need to input after starting the program. |
+| -e --extractor | `None` | The extractor to use. If not specified, you will need to input after starting the program. |
 | -l --list | N/A | Lists contents of the config settings and exits. |
 | -h --help | N/A | Prints the help menu and exits. |
 
@@ -86,6 +88,11 @@ python3 src/main.py -l
 ### Print help menu.
 ```bash
 python3 src/main.py --help
+```
+
+### Load a forum topic from my modding forum.
+```bash
+python3 src/main.py -u https://forum.moddingcommunity.com/t/discord-login-integration-added/170 -e discourse_topic
 ```
 </details>
 
@@ -191,6 +198,9 @@ When a POST request is sent, the content type is `application/json` and an examp
 
 ```json
 {
+    "url": "<URL Parsed>",
+    "extractor": "<Extractor Used>",
+    "web_data": "<Web Data Extracted>",
     "response": "<ChatGPT Response>"
 }
 ```
