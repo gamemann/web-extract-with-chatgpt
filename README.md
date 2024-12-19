@@ -154,6 +154,8 @@ The ChatGPT object contains settings related to OpenAI and ChatGPT.
 | max_tokens | int | `500` | The maximum tokens to use with the request. |
 | temperature | float | `0.7` | The temperature to use with the ChatGPT request. Read more about this [here](https://aimresearch.co/leaders-opinion/leaders-opinion-how-temperature-affects-chatgpt-with-rachael-chudoba). |
 | max_input | int | `500` | The maximum characters to send to ChatGPT. |
+| role_template | string | `chatgpt_role` | The template file name to use with the system's role in ChatGPT from the [`templates/`](./templates/) directory without the file extension (`.tpl`). |
+| prompt_template | string | `chatgpt_prompt` | The template file name to use with the user's prompt in ChatGPT from the [`templates/`](./templates/) directory without the file extension (`.tpl`). |
 
 Here is a list of model code names you can use with the `model` setting.
 
