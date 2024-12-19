@@ -7,10 +7,14 @@ from config import Config
 from chatgpt import ChatGPT
 from utils import format
 
-HELP_MENU = """Usage: python3 src/main.py [-c --cfg <path>] [-h -l]
--c --cfg => Path to config file (default ./conf.json).
--l --list => List settings from config file and exit.
--h --help => Print help menu and exit.
+HELP_MENU = """Usage: python3 src/main.py [OPTIONS]
+
+Options:
+  -c, --cfg <path>        Path to config file (default: ./conf.json)
+  -u, --url <url>         URL to extract web data from. If not specified, you will be prompted at program start.
+  -e, --extractor <name>  Extractor to use. If not specified, you will be prompted at program start.
+  -l, --list              List settings from the config file and exit.
+  -h, --help              Display this help menu and exit.
 """
 
 def main():
