@@ -19,7 +19,7 @@ class Extractor(ExtractorBase):
         )
         
     def wait(self, drv: Firefox):
-        # Wait five seconds for 'contents' class is available.
+        # Wait five seconds for 'body' tag to become available.
         WebDriverWait(drv, 5).until(
             EC.presence_of_element_located((By.TAG_NAME, "body"))
         )
@@ -39,4 +39,3 @@ class Extractor(ExtractorBase):
         
         # Return element text contents.
         return ele.text
-    
