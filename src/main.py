@@ -1,5 +1,6 @@
 from sys import exit
 from importlib import import_module
+from re import sub
 
 from cli import Cli
 from config import Config
@@ -94,6 +95,9 @@ def main():
     # Extract web page content.
     try:
         web_data = extractor.extract(url)
+        
+        # Remove spaces and such often associated with web pages.
+        web_data = sub(r'\s+', ' ', web_data).strip()
     except Exception as e:
         print(f"Failed to extract web data: {e}")
         
