@@ -48,7 +48,7 @@ class ExtractorBase():
         except Exception as e:
             raise Exception(f"Failed to create Firefox driver: {e}")
         
-        # Parse web page.
+        # Load web page.
         try:
             drv.get(url)
         except Exception as e:

@@ -6,7 +6,6 @@ from config import Config
 from chatgpt import ChatGPT
 from utils import format
 
-
 HELP_MENU = """Usage: python3 src/main.py [-c --cfg <path>] [-h -l]
 -c --cfg => Path to config file (default ./conf.json).
 -l --list => List settings from config file and exit.
@@ -151,7 +150,7 @@ def main():
         
     # Handle output.
     try:
-        output.handle_data(resp)
+        output.handle_data(url, extractor_type,  web_data, resp)
     except Exception as e:
         print(f"Failed to handle output data: {e}")
         
@@ -160,8 +159,6 @@ def main():
     print("Done! Exiting program...")
 
     exit(0)
-    
-        
         
 if __name__ == "__main__":
     main()

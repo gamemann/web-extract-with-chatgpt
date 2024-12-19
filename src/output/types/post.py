@@ -12,10 +12,13 @@ class Output(OutputBase):
         
         headers["Content-Type"] = "application/json"
         
-    def handle_data(self, data: str):
+    def handle_data(self, url: str, extractor: str, web_data: str, resp: str):
         # Create data.
         json = {
-            "response": data
+            "url": url,
+            "extractor": extractor,
+            "web_data": web_data,
+            "response": resp
         }
         
         post(self.url,
