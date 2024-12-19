@@ -74,14 +74,14 @@ def main():
     extractor_type = cli.extractor
     
     if extractor_type is None:
-        extractor_type = input("Extractor [discourse_topic]: ").strip()
+        extractor_type = input("Extractor [default]: ").strip()
     else:
         print(f"Using Extractor: '{extractor_type}'...")
     
     # Check for default.
     if len(extractor_type) < 1:
-        print("Found extractor empty, using 'discourse_topic'...")
-        extractor_type = "discourse_topic"
+        print("Found extractor empty, using 'default'...")
+        extractor_type = "default"
         
     # Load extractor class to use.
     try:
