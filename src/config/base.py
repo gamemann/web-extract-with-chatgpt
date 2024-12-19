@@ -20,6 +20,8 @@ class ChatGPT():
         self.max_tokens = 500
         self.temperature = 0.7
         self.max_input = 500
+        self.role_template = "chatgpt_role"
+        self.prompt_template = "chatgpt_prompt"
     
     def as_dict(self):
         return {
@@ -27,7 +29,9 @@ class ChatGPT():
             "model": self.model,
             "max_tokens": self.max_tokens,
             "temperature": self.temperature,
-            "max_input": self.max_input
+            "max_input": self.max_input,
+            "role_template": self.role_template,
+            "prompt_template": self.prompt_template
         }
         
 class OutputPost():
@@ -101,6 +105,8 @@ class Config():
             self.chatgpt.max_tokens = v.get("max_tokens", self.chatgpt.max_tokens)
             self.chatgpt.temperature = v.get("temperature", self.chatgpt.temperature)
             self.chatgpt.max_input = v.get("max_input", self.chatgpt.max_input)
+            self.chatgpt.role_template = v.get("role_template", self.chatgpt.role_template)
+            self.chatgpt.prompt_template = v.get("prompt_template", self.chatgpt.prompt_template)
             
         # Get output config.
         if "output" in data:
@@ -147,6 +153,8 @@ class Config():
         print(f"\tMax Tokens => {self.chatgpt.max_tokens}")
         print(f"\tTemperature => {self.chatgpt.temperature}")
         print(f"\tMax Input => {self.chatgpt.max_input}")
+        print(f"\tRole Template File => {self.chatgpt.role_template}")
+        print(f"\tPrompt Template File => {self.chatgpt.prompt_template}")
         
         # Output settings.
         print("Output Settings")

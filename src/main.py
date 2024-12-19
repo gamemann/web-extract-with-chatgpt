@@ -124,14 +124,14 @@ def main():
     }
     
     try:
-        role = format(f"templates/chatgpt_role.tpl", data)
+        role = format(f"templates/{cfg.chatgpt.role_template}.tpl", data)
     except Exception as e:
         print(f"Failed to format ChatGPT role: {e}")
         
         exit(1)
         
     try:
-        prompt = format(f"templates/chatgpt_prompt.tpl", data)
+        prompt = format(f"templates/{cfg.chatgpt.prompt_template}.tpl", data)
     except Exception as e:
         print(f"Failed to format ChatGPT prompt: {e}")
         
