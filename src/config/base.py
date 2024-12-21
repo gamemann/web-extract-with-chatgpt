@@ -15,6 +15,7 @@ class Extract():
 
 class ChatGPT():
     def __init__(self):
+        self.enabled = True
         self.key: str = None
         self.model = "gpt-3.5-turbo"
         self.max_tokens = 500
@@ -25,6 +26,7 @@ class ChatGPT():
     
     def as_dict(self):
         return {
+            "enabled": self.enabled,
             "key": self.key,
             "model": self.model,
             "max_tokens": self.max_tokens,
@@ -100,6 +102,7 @@ class Config():
         if "chatgpt" in data:
             v = data["chatgpt"]
             
+            self.chatgpt.enabled = v.get("enabled", self.chatgpt.enabled)
             self.chatgpt.key = v.get("key", self.chatgpt.key)
             self.chatgpt.model = v.get("model", self.chatgpt.model)
             self.chatgpt.max_tokens = v.get("max_tokens", self.chatgpt.max_tokens)
@@ -148,6 +151,7 @@ class Config():
                 
         # ChatGPT Settings.
         print("ChatGPT Settings")
+        print(f"\tEnabled => {self.chatgpt.enabled}")
         print(f"\tKey => {self.chatgpt.key}")
         print(f"\tModel => {self.chatgpt.model}")
         print(f"\tMax Tokens => {self.chatgpt.max_tokens}")

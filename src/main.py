@@ -109,51 +109,56 @@ def main():
         
         exit(1)
         
-    # Create ChatGPT class.
-    try:
-        print("Initializing ChatGPT client...")
-        
-        chatgpt = ChatGPT(
-            key = cfg.chatgpt.key,
-            model = cfg.chatgpt.model,
-            max_tokens = cfg.chatgpt.max_tokens,
-            temperature = cfg.chatgpt.temperature,
-            max_input = cfg.chatgpt.max_input
-        )
-    except Exception as e:
-        print(f"Failed to initialize ChatGPT class: {e}")
-        
-        exit(1)
-        
-    # We need to retrieve role and prompt using the template engine.
-    data = {
-        "url": url,
-        "content": web_data
-    }
     
-    try:
-        role = format(f"templates/{cfg.chatgpt.role_template}.tpl", data)
-    except Exception as e:
-        print(f"Failed to format ChatGPT role: {e}")
+    # Check if ChatGPT is enabled.
+    chatgpt_res: str = None
+    
+    if cfg.chatgpt.enabled:
+        # Create ChatGPT class.
+        try:
+            print("Initializing ChatGPT client...")
+            
+            chatgpt = ChatGPT(
+                key = cfg.chatgpt.key,
+                model = cfg.chatgpt.model,
+                max_tokens = cfg.chatgpt.max_tokens,
+                temperature = cfg.chatgpt.temperature,
+                max_input = cfg.chatgpt.max_input
+            )
+        except Exception as e:
+            print(f"Failed to initialize ChatGPT class: {e}")
+            
+            exit(1)
+
+        # We need to retrieve role and prompt using the template engine.
+        data = {
+            "url": url,
+            "content": web_data
+        }
         
-        exit(1)
-        
-    try:
-        prompt = format(f"templates/{cfg.chatgpt.prompt_template}.tpl", data)
-    except Exception as e:
-        print(f"Failed to format ChatGPT prompt: {e}")
-        
-        exit(1)
-        
-    # Send ChatGPT request.
-    try:
-        print("Sending ChatGPT API request...")
-        
-        resp = chatgpt.prompt(role, prompt)
-    except Exception as e:
-        print(f"Failed to send ChatGPT API request: {e}")
-        
-        exit(1)
+        try:
+            role = format(f"templates/{cfg.chatgpt.role_template}.tpl", data)
+        except Exception as e:
+            print(f"Failed to format ChatGPT role: {e}")
+            
+            exit(1)
+            
+        try:
+            prompt = format(f"templates/{cfg.chatgpt.prompt_template}.tpl", data)
+        except Exception as e:
+            print(f"Failed to format ChatGPT prompt: {e}")
+            
+            exit(1)
+            
+        # Send ChatGPT request.
+        try:
+            print("Sending ChatGPT API request...")
+            
+            chatgpt_res = chatgpt.prompt(role, prompt)
+        except Exception as e:
+            print(f"Failed to send ChatGPT API request: {e}")
+            
+            exit(1)
         
     # Initialize output class.
     try:
@@ -175,7 +180,7 @@ def main():
         
     # Handle output.
     try:
-        output.handle_data(url, extractor_type,  web_data, resp)
+        output.handle_data(url, extractor_type,  web_data, chatgpt_res)
     except Exception as e:
         print(f"Failed to handle output data: {e}")
         

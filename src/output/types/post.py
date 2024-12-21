@@ -12,14 +12,16 @@ class Output(OutputBase):
         
         headers["Content-Type"] = "application/json"
         
-    def handle_data(self, url: str, extractor: str, web_data: str, resp: str):
+    def handle_data(self, url: str, extractor: str, web_data: str, chatgpt_res: str):
         # Create data.
         json = {
             "url": url,
             "extractor": extractor,
             "web_data": web_data,
-            "response": resp
         }
+        
+        if chatgpt_res:
+            json["chatgpt_res"] = chatgpt_res
         
         post(self.url,
             json = json,
