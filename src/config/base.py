@@ -61,6 +61,7 @@ class Output():
 class Config():
     def __init__(self):
         self.save_to_fs = False
+        self.templates_dir = "templates"
         
         self.extract = Extract()
         self.chatgpt = ChatGPT()
@@ -69,6 +70,7 @@ class Config():
     def as_dict(self):
         return {
             "save_to_fs": self.save_to_fs,
+            "templates_dir": self.templates_dir,
             "extract": self.extract.as_dict(),
             "chatgpt": self.chatgpt.as_dict(),
             "output": self.output.as_dict()   
@@ -83,8 +85,9 @@ class Config():
         except Exception as e:
             raise Exception(f"Failed to load JSON data: {e}")
         
-        # Get save to filesystem.
+        # Get general settings.
         self.save_to_fs = data.get("save_to_fs", self.save_to_fs)
+        self.templates_dir = data.get("templates_dir", self.templates_dir)
         
         # Get extract config.
         if "extract" in data:
@@ -138,6 +141,7 @@ class Config():
         # General settings.
         print("General Settings")
         print(f"\tSave To Filesystem => {self.save_to_fs}")
+        
         
         # Extract settings.
         print("Extract Settings")

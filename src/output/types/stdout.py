@@ -9,4 +9,4 @@ class Output(OutputBase):
             print("")
             
             print("Reply From ChatGPT:")
-            print(resp)
+            print(chatgpt_res)
