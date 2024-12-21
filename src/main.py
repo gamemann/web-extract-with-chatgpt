@@ -108,7 +108,6 @@ def main():
         print(f"Failed to extract web data: {e}")
         
         exit(1)
-        
     
     # Check if ChatGPT is enabled.
     chatgpt_res: str = None
