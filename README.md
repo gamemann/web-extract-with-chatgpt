@@ -42,7 +42,7 @@ Python (version 3 or higher) is required to run this project. Additionally, the 
 * Selenium (`4.27.1`)
 * Beautifulsoup4 (`4.12.3`)
 * Requests (`2.32.3`)
-* Jinja2 (`3.1.4`)
+* Jinja2 (`3.1.5`)
 * OpenAI (`1.57.4`)
 
 You may install these packages using the following command after cloning this repository.
