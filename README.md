@@ -201,6 +201,7 @@ The output object is used for sending the ChatGPT response somewhere.
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | type | string | `stdout` | The type of output to use (`stdout` or `post` are supported right now). |
+| stdout | Stdout Object | `{}` | Settings for the Stdout type. |
 | post | POST Object | `{}` | Settings for the POST type. |
 
 When a POST request is sent, the content type is `application/json` and an example of the request body may be found below.
@@ -213,6 +214,28 @@ When a POST request is sent, the content type is `application/json` and an examp
     "chatgpt_res": "<ChatGPT Response>"
 }
 ```
+
+### Stdout Object
+The Stdout object contains settings when using the `stdout` type to output the results to the `stdout` pipe.
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| use_json | bool | `false` | Outputs results in JSON format. |
+| file_path | string | `null` | If set, will write the results to a file at this path. |
+| file_append | bool | `false` | If true, will append the results to the file. |
+
+<details>
+    <summary>Example(s)</summary>
+
+#### Output With JSON & Append Results To File
+```json
+{
+    "use_json": true,
+    "file_path": "./ewc.json",
+    "file_append": true
+}
+```
+</details>
 
 ### POST Object
 The POST object contains settings when using the `post` type to send results to a web endpoint via a POST request.

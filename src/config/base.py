@@ -47,15 +47,30 @@ class OutputPost():
             "headers": self.headers
         }
 
+class OutputStdout():
+    def __init__(self):
+        self.use_json = False
+        self.file_path: str = None
+        self.file_append = False
+        
+    def as_dict(self):
+        return {
+            "use_json": self.use_json,
+            "file_path": self.file_path,
+            "file_append": self.file_append
+        }
+
 class Output():
     def __init__(self):
         self.type = "stdout"
         self.post = OutputPost()
+        self.stdout = OutputStdout()
         
     def as_dict(self):
         return {
             "type": self.type,
-            "post": self.post.as_dict()
+            "post": self.post.as_dict(),
+            "stdout": self.stdout.as_dict()
         }
 
 class Config():
@@ -132,6 +147,13 @@ class Config():
                     for k, v4 in v3:
                         self.output.post.headers[k] = v4
                         
+            if "stdout" in v:
+                v2 = v["stdout"]
+                
+                self.output.stdout.use_json = v2.get("use_json", self.output.stdout.use_json)
+                self.output.stdout.file_path = v2.get("file_path", self.output.stdout.file_path)
+                self.output.stdout.file_append = v2.get("file_append", self.output.stdout.file_append)
+                        
     def save(self, path: str):
         contents = json.dumps(self.as_dict(), indent = 4)
 
@@ -141,7 +163,6 @@ class Config():
         # General settings.
         print("General Settings")
         print(f"\tSave To Filesystem => {self.save_to_fs}")
-        
         
         # Extract settings.
         print("Extract Settings")
@@ -167,6 +188,12 @@ class Config():
         # Output settings.
         print("Output Settings")
         print(f"\tType => {self.output.type}")
+        
+        print("\tStdout Settings")
+        print(f"\t\tUse JSON => {self.output.stdout.use_file}")
+        print(f"\t\tFile Path => {self.output.stdout.file_path}")
+        print(f"\t\tFile Append => {self.output.stdout.file_append}")
+        
         print("\tPOST Settings")
         print(f"\t\tURL => {self.output.post.url}")
         
