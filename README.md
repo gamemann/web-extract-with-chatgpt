@@ -76,6 +76,7 @@ The following command line arguments are supported when running this application
 | -c, --cfg | `./conf.json` | Path to config file. |
 | -u, --url | `None` | The URL to parse. If not specified, you will need to input after starting the program. |
 | -e, --extractor | `None` | The extractor to use. If not specified, you will need to input after starting the program. |
+| -s --silent | N/A | When set, verbose output will be disabled. |
 | -l, --list | N/A | Lists contents of the config settings and exits. |
 | -h, --help | N/A | Prints the help menu and exits. |
 

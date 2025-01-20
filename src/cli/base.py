@@ -7,6 +7,8 @@ class Cli():
         self.url: str = None
         self.extractor: str = None
         
+        self.silent = False
+        
         self.list = False
         self.help = False
         
@@ -43,6 +45,10 @@ class Cli():
             
             if v:
                 self.extractor = v
+                
+            # Handle silent mode.
+            if arg == "-s" or arg == "--silent":
+                self.silent = True
             
             # Handle list.
             if arg == "-l" or arg == "--list":

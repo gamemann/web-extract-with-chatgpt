@@ -13,6 +13,7 @@ Options:
   -c, --cfg <path>        Path to config file (default: ./conf.json)
   -u, --url <url>         URL to extract web data from. If not specified, you will be prompted at program start.
   -e, --extractor <name>  Extractor to use. If not specified, you will be prompted at program start.
+  -s, --silent            When set, will disable verbose output.
   -l, --list              List settings from the config file and exit.
   -h, --help              Display this help menu and exit.
 """
@@ -68,14 +69,14 @@ def main():
     
     if url is None:
         url = input("URL: ").strip()
-    else:
+    elif not cli.silent:
         print(f"Using URL: '{url}'...")
     
     extractor_type = cli.extractor
     
     if extractor_type is None:
         extractor_type = input("Extractor [default]: ").strip()
-    else:
+    elif not cli.silent:
         print(f"Using Extractor: '{extractor_type}'...")
     
     # Check for default.
@@ -98,7 +99,8 @@ def main():
         
     # Extract web page content.
     try:
-        print("Extracting web data...")
+        if not cli.silent:
+            print("Extracting web data...")
         
         web_data = extractor.extract(url)
         
@@ -115,7 +117,8 @@ def main():
     if cfg.chatgpt.enabled:
         # Create ChatGPT class.
         try:
-            print("Initializing ChatGPT client...")
+            if not cli.silent:
+                print("Initializing ChatGPT client...")
             
             chatgpt = ChatGPT(
                 key = cfg.chatgpt.key,
@@ -151,7 +154,8 @@ def main():
             
         # Send ChatGPT request.
         try:
-            print("Sending ChatGPT API request...")
+            if not cli.silent:
+                print("Sending ChatGPT API request...")
             
             chatgpt_res = chatgpt.prompt(role, prompt)
         except Exception as e:
@@ -184,8 +188,9 @@ def main():
         print(f"Failed to handle output data: {e}")
         
         exit(1)
-        
-    print("Done! Exiting program...")
+    
+    if not cli.silent: 
+        print("Done! Exiting program...")
 
     exit(0)
         
